@@ -3,38 +3,38 @@ import { CALORIE_DATA, MACRO_NUTRIENTS } from '@/constants';
 export function CalorieIntakeCard() {
   const { consumed, target } = CALORIE_DATA;
   const percentage = Math.round((consumed / target) * 100);
-  const radius = 58;
+  const radius = 64;
   const circumference = 2 * Math.PI * radius;
   const dashOffset = circumference - (percentage / 100) * circumference;
 
   return (
-    <div className="rounded-2xl bg-white p-6 border border-charcoal-100">
-      <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-charcoal-800">Caloric Intake</h3>
+    <div className="flex h-full flex-col rounded-2xl bg-white p-6 border border-charcoal-100 shadow-sm">
+      <div className="mb-6 flex items-center justify-between">
+        <h3 className="text-sm font-bold text-charcoal-900">Caloric Intake</h3>
         <span className="text-charcoal-300">📊</span>
       </div>
 
-      <div className="flex flex-col items-center">
+      <div className="flex flex-1 flex-col items-center justify-center">
         {/* Circular Progress */}
-        <div className="relative mb-5">
-          <svg width="140" height="140" className="-rotate-90">
+        <div className="relative mb-8">
+          <svg width="150" height="150" className="-rotate-90">
             {/* Background track */}
             <circle
-              cx="70"
-              cy="70"
+              cx="75"
+              cy="75"
               r={radius}
               fill="none"
-              stroke="#e8ede5"
-              strokeWidth="10"
+              stroke="#f4f7f2"
+              strokeWidth="12"
             />
             {/* Progress arc */}
             <circle
-              cx="70"
-              cy="70"
+              cx="75"
+              cy="75"
               r={radius}
               fill="none"
               stroke="#7a9466"
-              strokeWidth="10"
+              strokeWidth="12"
               strokeLinecap="round"
               strokeDasharray={circumference}
               strokeDashoffset={dashOffset}
@@ -42,26 +42,26 @@ export function CalorieIntakeCard() {
             />
           </svg>
           {/* Center Label */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="text-3xl font-bold text-charcoal-900">
+          <div className="absolute inset-0 flex flex-col items-center justify-center pt-2">
+            <span className="text-4xl font-extrabold tracking-tight text-charcoal-900">
               {consumed.toLocaleString()}
             </span>
-            <span className="text-xs text-charcoal-400">kcal</span>
+            <span className="text-[13px] font-semibold text-charcoal-400 mt-0.5">kcal</span>
           </div>
         </div>
 
         {/* Macros Row */}
-        <div className="grid w-full grid-cols-4 gap-2">
+        <div className="grid w-full grid-cols-4 gap-2 px-1">
           {MACRO_NUTRIENTS.map((macro) => (
-            <div key={macro.name} className="text-center">
+            <div key={macro.name} className="text-center flex flex-col items-center">
               <div
-                className="mx-auto mb-1 h-1.5 w-8 rounded-full"
+                className="mb-2.5 h-1.5 w-7 rounded-full"
                 style={{ backgroundColor: macro.color }}
               />
-              <p className="text-xs font-semibold text-charcoal-800">
-                {macro.current}{macro.unit}
+              <p className="text-[13px] font-extrabold text-charcoal-900">
+                {macro.current}<span className="text-[10px] font-bold text-charcoal-500 ml-0.5">{macro.unit}</span>
               </p>
-              <p className="text-[10px] text-charcoal-400">{macro.name}</p>
+              <p className="mt-0.5 text-[10px] font-bold text-charcoal-400">{macro.name}</p>
             </div>
           ))}
         </div>

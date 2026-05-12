@@ -8,10 +8,12 @@ export const LANDING_NAV_ITEMS: NavItem[] = [
 ];
 
 export const DASHBOARD_NAV_ITEMS: NavItem[] = [
+  { label: 'Home', href: '/' },
   { label: 'Dashboard', href: '/dashboard', isActive: true },
   { label: 'Community', href: '#community' },
   { label: 'Meal Planner', href: '#meal-planner' },
   { label: 'Resources', href: '#resources' },
+  { label: 'Chat', href: '#chat' },
 ];
 
 /* ── Landing Page Tags ── */
